@@ -9,7 +9,7 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center justify-between">
         {/* Columna izquierda - Información */}
         <div className="w-full md:w-1/2 mb-12 md:mb-0">
-          <p className="text-blue-400 mb-2 font-mono">Hola Mundo, Soy Esteban</p>
+          <p className="text-blue-400 mb-2 font-mono">Hola Mundo, Soy Triana</p>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
             <span className="text-white">Ingeniero en</span><br />
@@ -18,8 +18,7 @@ const Hero: React.FC = () => {
           </h1>
           
           <p className="text-gray-300 mb-8 max-w-lg">
-            Apasionado por crear soluciones digitales innovadoras y funcionales 
-            que impacten positivamente al usuario final.
+          Siempre con actitud hacker (ético) y un toque creativo.
           </p>
           
           <div className="flex flex-wrap gap-4 mb-8">
