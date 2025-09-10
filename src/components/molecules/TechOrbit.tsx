@@ -20,7 +20,7 @@ const TechOrbit: React.FC = () => {
       icon: '🌐', // HTML
       color: '#E34F26',
       size: 40,
-      orbitRadius: 180,
+      orbitRadius: 375,
       orbitSpeed: 20,
       startPosition: 0
     },
@@ -29,7 +29,7 @@ const TechOrbit: React.FC = () => {
       icon: '💅', // CSS
       color: '#1572B6',
       size: 35,
-      orbitRadius: 180,
+      orbitRadius: 375,
       orbitSpeed: 25,
       startPosition: 72
     },
@@ -38,7 +38,7 @@ const TechOrbit: React.FC = () => {
       icon: '⚛️', // React
       color: '#61DAFB',
       size: 45,
-      orbitRadius: 180,
+      orbitRadius: 375,
       orbitSpeed: 30,
       startPosition: 144
     },
@@ -47,7 +47,7 @@ const TechOrbit: React.FC = () => {
       icon: '🟦', // TypeScript
       color: '#3178C6',
       size: 35,
-      orbitRadius: 180,
+      orbitRadius: 375,
       orbitSpeed: 22,
       startPosition: 216
     },
@@ -56,7 +56,7 @@ const TechOrbit: React.FC = () => {
       icon: '🟨', // JavaScript
       color: '#F7DF1E',
       size: 38,
-      orbitRadius: 180,
+      orbitRadius: 375,
       orbitSpeed: 28,
       startPosition: 288
     },
@@ -65,7 +65,7 @@ const TechOrbit: React.FC = () => {
       icon: '🔥', // Firebase
       color: '#FFCA28',
       size: 42,
-      orbitRadius: 180,
+      orbitRadius: 375,
       orbitSpeed: 18,
       startPosition: 120
     },
@@ -74,7 +74,7 @@ const TechOrbit: React.FC = () => {
       icon: '🍃', // Node.js
       color: '#339933',
       size: 40,
-      orbitRadius: 180,
+      orbitRadius: 375,
       orbitSpeed: 15,
       startPosition: 240
     },
@@ -83,7 +83,7 @@ const TechOrbit: React.FC = () => {
       icon: '🐙', // GitHub
       color: '#181717',
       size: 38,
-      orbitRadius: 180,
+      orbitRadius: 375,
       orbitSpeed: 23,
       startPosition: 300
     }
@@ -117,15 +117,32 @@ const TechOrbit: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative w-[400px] h-[400px]">
+    <div className="relative w-[800px] h-[800px]">
       {/* Círculo central (tu foto) */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-blue-900 border-4 border-blue-400 overflow-hidden z-10">
-        {/* Aquí iría tu foto */}
-        <div className="w-full h-full bg-gradient-to-br from-blue-800 to-blue-600"></div>
-      </div>
+      <motion.div 
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full border-4 border-blue-400 overflow-hidden z-10"
+        whileHover={{ 
+          scale: 1.05,
+          boxShadow: "0 0 25px rgba(59, 130, 246, 0.6)",
+          borderColor: "#60a5fa"
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      >
+        {/* Imagen del usuario */}
+        <motion.img 
+          src="/images/481174876_1678352506112217_4941095563594970251_n.jpg" 
+          alt="Foto de perfil"
+          className="w-full h-full object-cover object-center"
+          style={{
+            objectPosition: "center 50%"
+          }}
+          whileHover={{ scale: 1.1 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        />
+      </motion.div>
       
       {/* Órbita */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] rounded-full border border-blue-500/20"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[750px] h-[750px] rounded-full border border-blue-500/20"></div>
       
       {/* Iconos de tecnologías */}
       {techIcons.map((tech) => (

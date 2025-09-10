@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
         
         <div className="flex items-center space-x-4">
           <a 
-            href="https://linkedin.com/in/yourprofile" 
+            href="https://www.linkedin.com/in/andrés-felpe-triana-garces-029683383" 
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="LinkedIn"
