@@ -28,17 +28,17 @@ const AboutTemplate: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      <MovingBackground />
-      
-      <Navbar />
-      
-      <main className="container mx-auto px-4 pt-32 pb-16 relative z-10">
-        <div className="flex flex-col items-center justify-center">
-          <BiographySection paragraphs={biographyParagraphs} />
-        </div>
-      </main>
-    </div>
+    <MovingBackground>
+      <div className="page-container">
+        <Navbar />
+        
+        <main className="container mx-auto px-4 pt-32 pb-24 relative z-10">
+          <div className="flex flex-col items-center justify-center">
+            <BiographySection paragraphs={biographyParagraphs} className="w-full" />
+          </div>
+        </main>
+      </div>
+    </MovingBackground>
   );
 };
 

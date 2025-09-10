@@ -6,7 +6,7 @@ import MovingBackground from '../MovingBackground';
 const HomeTemplate: React.FC = () => {
   return (
     <MovingBackground>
-      <div className="min-h-screen">
+      <div className="page-container">
         <Navbar />
         <Hero />
       </div>

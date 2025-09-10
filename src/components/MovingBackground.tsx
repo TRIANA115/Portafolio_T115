@@ -8,6 +8,7 @@ const MovingBackground: React.FC<MovingBackgroundProps> = ({ children }) => {
   const [matrixColumns, setMatrixColumns] = useState<Array<{id: number, chars: string[], speed: number, startDelay: number, position: number}>>([]);
   const [binaryElements, setBinaryElements] = useState<Array<{id: number, content: string, x: number, y: number, opacity: number, size: number}>>([]);
   const [hexCodes, setHexCodes] = useState<Array<{id: number, content: string, x: number, y: number, color: string, size: number}>>([]);
+  const [isMobile, setIsMobile] = useState(false);
   
   // Generate random characters for the matrix effect
   const generateRandomChar = () => {
@@ -34,56 +35,83 @@ const MovingBackground: React.FC<MovingBackgroundProps> = ({ children }) => {
     return result;
   };
 
+  // Detect mobile devices
+  useEffect(() => {
+    const checkIfMobile = () => {
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobile(isMobileDevice);
+    };
+    
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
+
   // Initialize matrix columns
   useEffect(() => {
     const columns = [];
-    const columnCount = Math.floor(window.innerWidth / 20); // Adjust spacing as needed
+    // Reduce column count on mobile for better performance
+    const columnSpacing = isMobile ? 40 : 20;
+    const columnCount = Math.floor(window.innerWidth / columnSpacing);
     
     for (let i = 0; i < columnCount; i++) {
-      const charCount = 15 + Math.floor(Math.random() * 15); // Between 15-30 chars per column
+      // Reduce character count on mobile
+      const charCount = isMobile ? 
+        (8 + Math.floor(Math.random() * 8)) : // 8-16 chars for mobile
+        (15 + Math.floor(Math.random() * 15)); // 15-30 chars for desktop
+      
       const chars = Array(charCount).fill('').map(() => generateRandomChar());
-      const speed = 1 + Math.random() * 3; // Random speed
-      const startDelay = Math.random() * 5000; // Random start delay
+      const speed = 1 + Math.random() * 3;
+      const startDelay = Math.random() * 5000;
       
       columns.push({
         id: i,
         chars,
         speed,
         startDelay,
-        position: -charCount // Start above the screen
+        position: -charCount
       });
     }
     
     setMatrixColumns(columns);
 
-    // Create binary elements
+    // Create binary elements - reduce count on mobile
+    const binaryCount = isMobile ? 10 : 20;
     const binaries = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < binaryCount; i++) {
       binaries.push({
         id: i,
-        content: generateRandomBinary(8),
+        content: generateRandomBinary(isMobile ? 4 : 8),
         x: Math.random() * 100,
         y: Math.random() * 100,
         opacity: 0.1 + Math.random() * 0.4,
-        size: 12 + Math.floor(Math.random() * 8)
+        size: isMobile ? 
+          (8 + Math.floor(Math.random() * 4)) : // 8-12px for mobile
+          (12 + Math.floor(Math.random() * 8)) // 12-20px for desktop
       });
     }
     setBinaryElements(binaries);
 
-    // Create hex code elements
+    // Create hex code elements - reduce count on mobile
+    const hexCount = isMobile ? 8 : 15;
     const hexes = [];
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < hexCount; i++) {
       hexes.push({
         id: i,
-        content: generateRandomHex(4 + Math.floor(Math.random() * 4)),
+        content: generateRandomHex(isMobile ? 2 : (4 + Math.floor(Math.random() * 4))),
         x: Math.random() * 100,
         y: Math.random() * 100,
         color: i % 3 === 0 ? '#00ff00' : (i % 3 === 1 ? '#00ffff' : '#ff0000'),
-        size: 14 + Math.floor(Math.random() * 10)
+        size: isMobile ? 
+          (10 + Math.floor(Math.random() * 4)) : // 10-14px for mobile
+          (14 + Math.floor(Math.random() * 10)) // 14-24px for desktop
       });
     }
     setHexCodes(hexes);
-  }, []);
+  }, [isMobile]);
 
   // Animate the matrix columns
   useEffect(() => {
@@ -168,10 +196,10 @@ const MovingBackground: React.FC<MovingBackgroundProps> = ({ children }) => {
       left: 0,
       width: '100%',
       height: '100vh',
-      overflow: 'hidden',
       backgroundColor: '#000000',
       fontFamily: 'monospace',
-      zIndex: 0
+      zIndex: 0,
+      pointerEvents: 'none' // Permite que los eventos pasen a través del fondo
     }}>
       {/* Matrix falling characters */}
       {matrixColumns.map(column => (
@@ -264,6 +292,8 @@ const MovingBackground: React.FC<MovingBackgroundProps> = ({ children }) => {
         zIndex: 10,
         width: '100%',
         height: '100%',
+        overflow: 'auto',
+        pointerEvents: 'auto' // Permite interactuar con el contenido
       }}>
         {children}
       </div>

@@ -10,9 +10,13 @@ const Navbar: React.FC = () => {
           <span className="text-white">Dev</span> Triana.
         </Link>
         
-        <Navigation />
+        {/* Navegación central */}
+        <div className="flex-1 flex justify-center">
+          <Navigation />
+        </div>
         
-        <div className="flex items-center space-x-4">
+        {/* Iconos de redes sociales - ocultos en móvil, visibles en tablet/desktop */}
+        <div className="hidden sm:flex items-center space-x-4">
           <a 
             href="https://www.linkedin.com/in/andrés-felpe-triana-garces-029683383" 
             target="_blank" 
