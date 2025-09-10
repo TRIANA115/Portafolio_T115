@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../organisms/Navbar';
 import BiographySection from '../molecules/BiographySection';
 import MovingBackground from '../MovingBackground';
 
 const AboutTemplate: React.FC = () => {
+  // Cargar Font Awesome
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+    link.integrity = 'sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==';
+    link.crossOrigin = 'anonymous';
+    link.referrerPolicy = 'no-referrer';
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
   const biographyParagraphs = [
     "Soy un apasionado por el mundo de la tecnología y los sistemas, con experiencia en el mantenimiento preventivo y correctivo de equipos de cómputo (PCs y portátiles), asegurando su óptimo rendimiento y prolongando su vida útil.",
     "Cuento con conocimientos en la configuración de redes, instalación y gestión de cámaras de seguridad, así como en la implementación y administración de routers, garantizando conectividad estable y entornos tecnológicos seguros.",
