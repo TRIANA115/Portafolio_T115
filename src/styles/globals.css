@@ -25,4 +25,11 @@ html, body {
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+}/* 
+Utilidad para truncar texto en múltiples líneas */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
