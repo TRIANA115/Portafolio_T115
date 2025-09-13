@@ -22,10 +22,15 @@ const ProjectsTemplate: React.FC = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
+        console.log('Iniciando carga de datos de GitHub...');
+        
         const [userInfo, repositories] = await Promise.all([
           GitHubService.getUserInfo(),
-          GitHubService.getPublicRepos()
+          GitHubService.getAllRepos()
         ]);
+        
+        console.log('Usuario obtenido:', userInfo);
+        console.log('Repositorios obtenidos:', repositories.length);
         
         setUser(userInfo);
         setRepos(repositories);
