@@ -28,7 +28,14 @@ const Hero: React.FC = () => {
           </p>
           
           <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <Button variant="primary">Descargar CV</Button>
+            <a 
+              href="/doc/CV_Andres_Felipe_Triana_Garces.pdf" 
+              download="CV_Andres_Felipe_Triana_Garces.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="primary">Descargar CV</Button>
+            </a>
             <Button variant="secondary">Contáctame</Button>
           </div>
           
