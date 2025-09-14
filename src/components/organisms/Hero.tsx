@@ -29,7 +29,7 @@ const Hero: React.FC = () => {
           
           <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-8">
             <a 
-              href="/doc/CV_Andres_Felipe_Triana_Garces.pdf" 
+              href="/doc/Hoja de Vida  CV.pdf" 
               download="CV_Andres_Felipe_Triana_Garces.pdf"
               target="_blank"
               rel="noopener noreferrer"
