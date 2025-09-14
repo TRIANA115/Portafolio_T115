@@ -36,7 +36,14 @@ const Hero: React.FC = () => {
             >
               <Button variant="primary">Descargar CV</Button>
             </a>
-            <Button variant="secondary">Contáctame</Button>
+            <a 
+              href="/doc/CERTIFICADOS HALLTEC Y FACTUS ANDRES TRIANA.pdf" 
+              download="CERTIFICADOS_HALLTEC_Y_FACTUS_ANDRES_TRIANA.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="primary">Descargar Certificado de Factus</Button>
+            </a>
           </div>
           
           <SocialBar />
