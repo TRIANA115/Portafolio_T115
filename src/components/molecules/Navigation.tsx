@@ -16,8 +16,7 @@ const Navigation: React.FC = () => {
   const navItems = [
     { path: '/', label: 'Inicio' },
     { path: '/sobre-mi', label: 'Sobre Mí' },
-    { path: '/proyectos', label: 'Proyectos' },
-    { path: '/contacto', label: 'Contacto' }
+    { path: '/proyectos', label: 'Proyectos' }
   ];
 
   // Cerrar menú al hacer clic fuera
